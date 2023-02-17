@@ -24,14 +24,14 @@ const app = express();
 //app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 
-const directives = helmet.contentSecurityPolicy.getDefaultDirectives();
-delete directives['form-action'];
-app.use(helmet({
-    contentSecurityPolicy: {
-        useDefaults: false,
-        directives,
-    },
-}));
+// const directives = helmet.contentSecurityPolicy.getDefaultDirectives();
+// delete directives['form-action'];
+// app.use(helmet({
+//     contentSecurityPolicy: {
+//         useDefaults: false,
+//         directives,
+//     },
+// }));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -52,7 +52,6 @@ try {
     provider.proxy = true;
 
     if (prod) {
-        console.log('trust proxy')
         app.enable('trust proxy');
         provider.proxy = true;
 
