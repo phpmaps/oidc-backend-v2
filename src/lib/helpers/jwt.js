@@ -29,7 +29,7 @@ function verifyAudience({ aud, azp }, expected, checkAzp) {
 }
 
 export async function sign(payload, key, alg, options = {}) {
-  console.log(":::jwt-sign")
+  //TODO: Doogs review
   let p = store.get(options.subject);
   const protectedHeader = {
     alg,
