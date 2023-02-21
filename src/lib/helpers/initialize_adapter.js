@@ -7,7 +7,7 @@ import instance from './weak_cache.js';
 import * as attention from './attention.js';
 import isConstructable from './type_validators.js';
 
-export default function initializeAdapter(adapter = MemoryAdapter) { //TODO: Doogs Switch to RedisAdapter
+export default function initializeAdapter(adapter = RedisAdapter) { //TODO: Doogs Switch to RedisAdapter
   if (adapter === MemoryAdapter) {
     attention.warn('a quick start development-only in-memory adapter is used, you MUST change it in'
     + ' order to not lose all stateful provider data upon restart and to be able to share these'

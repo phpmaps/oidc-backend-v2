@@ -557,7 +557,7 @@ function makeDefaults() {
      *
      * @nodefault
      */
-    adapter: MemoryAdapter, //TODO: Doogs switch back to RedisAdapter
+    adapter: RedisAdapter, //TODO: Doogs switch back to RedisAdapter
 
     /*
      * claims
