@@ -1,86 +1,86 @@
 let flow;
 let interval;
 
-const updateQr = (text) => {
-    var qrcode = new QRCode({ content: text, join: true });
-    var svg = qrcode.svg();
-    document.getElementById("container").innerHTML = svg;
+// const updateQr = (text) => {
+//     var qrcode = new QRCode({ content: text, join: true });
+//     var svg = qrcode.svg();
+//     document.getElementById("container").innerHTML = svg;
 
-}
+// }
 
-function next() {
-    document.getElementById("radios").classList.remove("radios");
-    document.getElementById("radios").classList.add("radios-none");
-    document.getElementById('qr-section').style.visibility = 'visible';
+// function next() {
+//     document.getElementById("radios").classList.remove("radios");
+//     document.getElementById("radios").classList.add("radios-none");
+//     document.getElementById('qr-section').style.visibility = 'visible';
 
-    interval = setInterval(myCallback, 2000, flow);
-    document.getElementById('timer').innerHTML =
-        05 + ":" + 00;
-    startTimer();
-}
+//     interval = setInterval(myCallback, 2000, flow);
+//     document.getElementById('timer').innerHTML =
+//         05 + ":" + 00;
+//     startTimer();
+// }
 
-function back() {
-    document.getElementById("radios").classList.add("radios");
-    document.getElementById("radios").classList.remove("radios-none");
-    document.getElementById('qr-section').style.visibility = 'hidden';
-    clearInterval(interval)
-}
+// function back() {
+//     document.getElementById("radios").classList.add("radios");
+//     document.getElementById("radios").classList.remove("radios-none");
+//     document.getElementById('qr-section').style.visibility = 'hidden';
+//     clearInterval(interval)
+// }
 
-document.getElementById('nextBtn').addEventListener(
-    'click',
-    (evt, val) => {
-        next()
-    },
-    false
-);
+// document.getElementById('nextBtn').addEventListener(
+//     'click',
+//     (evt, val) => {
+//         next()
+//     },
+//     false
+// );
 
-document.getElementById('backBtn').addEventListener(
-    'click',
-    (evt, val) => {
-        back()
-    },
-    false
-);
+// document.getElementById('backBtn').addEventListener(
+//     'click',
+//     (evt, val) => {
+//         back()
+//     },
+//     false
+// );
 
-document.getElementById('id-selfie').addEventListener(
-    'change',
-    (evt, val) => {
-        flow = JSON.parse(document.getElementById('gov_selfie').value);
-        updateQr(flow.url)
-    },
-    false
-);
+// document.getElementById('id-selfie').addEventListener(
+//     'change',
+//     (evt, val) => {
+//         flow = JSON.parse(document.getElementById('gov_selfie').value);
+//         updateQr(flow.url)
+//     },
+//     false
+// );
 
 
-document.getElementById('selfie').addEventListener(
-    'change',
-    (evt, val) => {
-        flow = JSON.parse(document.getElementById('phone_selfie').value);
-        updateQr(flow.url)
-    },
-    false
-);
+// document.getElementById('selfie').addEventListener(
+//     'change',
+//     (evt, val) => {
+//         flow = JSON.parse(document.getElementById('phone_selfie').value);
+//         updateQr(flow.url)
+//     },
+//     false
+// );
 
-document.getElementById('face-login').addEventListener(
-    'change',
-    (evt, val) => {
-        flow = JSON.parse(document.getElementById('face_login').value);
-        updateQr(flow.url)
-    },
-    false
-);
+// document.getElementById('face-login').addEventListener(
+//     'change',
+//     (evt, val) => {
+//         flow = JSON.parse(document.getElementById('face_login').value);
+//         updateQr(flow.url)
+//     },
+//     false
+// );
 
-document.getElementById('container').addEventListener(
-    'click',
-    (evt) => {
-        const uuid = document.getElementById('uuid').value;
-        postwith(`/interaction/${uuid}/login`, {
-            id: flow.token,
-            interview: flow.interviewId
-        });
-    },
-    false
-)
+// document.getElementById('container').addEventListener(
+//     'click',
+//     (evt) => {
+//         const uuid = document.getElementById('uuid').value;
+//         postwith(`/interaction/${uuid}/login`, {
+//             id: flow.token,
+//             interview: flow.interviewId
+//         });
+//     },
+//     false
+// )
 
 
 function startTimer() {
@@ -141,8 +141,8 @@ function postwith(to, p) {
 }
 
 
-flow = JSON.parse(document.getElementById('gov_selfie').value);
-updateQr(flow.url)
+//flow = JSON.parse(document.getElementById('gov_selfie').value);
+//updateQr(flow.url)
 
 async function myCallback(f) {
     const statusUrl = `https://demo-api.incodesmile.com/0/omni/get/onboarding/status?id=${flow.interviewId}`;

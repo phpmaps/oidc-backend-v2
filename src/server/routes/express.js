@@ -66,11 +66,16 @@ export default (app, provider) => {
 
       switch (prompt.name) {
         case 'login': {
-          res.set("Content-Security-Policy", "connect 'https://demo-api.incodesmile.com' 'https://ping.incodedemo.com' 'http://localhost:3000'")
+          //res.set("Content-Security-Policy", "frame-src 'https://demo-api.incodesmile.com' 'https://ping.incodedemo.com' 'http://localhost:3000'")
+          //res.set("Content-Security-Policy", "script-src 'https://api.i18nexus.com' 'https://demo-api.incodesmile.com' 'https://ping.incodedemo.com' 'http://localhost:3000'")
 
+          // res.setHeader(
+          //   'Content-Security-Policy-Report-Only',
+          //   "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self' https://api.i18nexus.com https://demo-api.incodesmile.com; style-src 'self' https://api.i18nexus.com https://demo-api.incodesmile.com; frame-src 'self';"
+          // );
           //TODO: Doogs remove hardcoded clientId
           
-          if (client.clientId === 'ping') {
+          if (client.clientId === process.env.OIDC_CLIENT_ID) {
             const gov_selfie = await init('63bbad0e38905700e07376dd');
             const phone_selfie = await init('63bbae1638905700e07377da');
             const face_login = await init('63bbae825b09e48e03781938');
@@ -95,6 +100,8 @@ export default (app, provider) => {
             });
 
           } else {
+
+            //TODO: Create visual error screen for unrecognized clientId.
 
             return res.render('login', {
               client,

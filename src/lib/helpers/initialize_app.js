@@ -202,15 +202,15 @@ export default function initializeApp() {
 
   const { issuer } = this;
   async function proxyWarning(ctx, next) {
-    if (proxyWarning.pass) return next();
+    //if (proxyWarning.pass) return next();
 
-    if (issuer.startsWith('https:') && !ctx.secure && ctx.get('x-forwarded-proto') === 'https') {
-      attention.warn('x-forwarded-proto header detected but not trusted, you must set proxy=true on the provider. See the documentation for more details.');
-      proxyWarning.pass = true;
-    } else if (issuer.startsWith('https:') && !ctx.secure && !ctx.get('x-forwarded-proto')) {
-      attention.warn('x-forwarded-proto header not detected for an https issuer, you must configure your ssl offloading proxy and the provider. See the documentation for more details.');
-      proxyWarning.pass = true;
-    }
+    // if (issuer.startsWith('https:') && !ctx.secure && ctx.get('x-forwarded-proto') === 'https') {
+    //   attention.warn('x-forwarded-proto header detected but not trusted, you must set proxy=true on the provider. See the documentation for more details.');
+    //   proxyWarning.pass = true;
+    // } else if (issuer.startsWith('https:') && !ctx.secure && !ctx.get('x-forwarded-proto')) {
+    //   attention.warn('x-forwarded-proto header not detected for an https issuer, you must configure your ssl offloading proxy and the provider. See the documentation for more details.');
+    //   proxyWarning.pass = true;
+    // }
 
     return next();
   }
