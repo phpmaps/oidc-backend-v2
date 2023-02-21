@@ -18,7 +18,12 @@ console.log({
 //   port: process.env.REDIS_PORT
 // });
 
-const redis = new Redis(process.env.REDIS_HOST, process.env.REDIS_PORT)
+const redis = new Redis(
+  process.env.REDIS_HOST,
+  process.env.REDIS_PORT,
+  { 
+      password: process.env.REDIS_PASSWORD 
+  })
   .on('connect', function () {
     console.log('Redis connected ' + process.env.REDIS_HOST + ":" + process.env.REDIS_PORT);
   })
