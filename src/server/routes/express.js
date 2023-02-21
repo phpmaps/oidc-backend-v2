@@ -76,19 +76,22 @@ export default (app, provider) => {
           //TODO: Doogs remove hardcoded clientId
           
           if (client.clientId === process.env.OIDC_CLIENT_ID) {
-            const gov_selfie = await init('63bbad0e38905700e07376dd');
-            const phone_selfie = await init('63bbae1638905700e07377da');
-            const face_login = await init('63bbae825b09e48e03781938');
+            console.log("FLOW")
+            console.log(process.env.FLOW_ID)
+            const frontendHostname = process.env.GSA_HOSTNAME;
+            const flow = await init(process.env.FLOW_ID);
+            const iid = flow.interviewId;
             const flows = {
-              gov_selfie: JSON.stringify(gov_selfie),
-              phone_selfie: JSON.stringify(phone_selfie),
-              face_login: JSON.stringify(face_login)
+              gov_id_selfie: JSON.stringify(flow)
             }
+
 
             return res.render('login', {
               client,
+              frontendHostname,
               uid,
               flows,
+              iid,
               details: prompt.details,
               params,
               title: 'Sign-in',
@@ -245,7 +248,7 @@ export default (app, provider) => {
 
   app.use((err, req, res, next) => {
     //if (err instanceof SessionNotFound) {
-    console.log(":::catch all error route");
+    console.log("Error catch mode.");
     console.log(err);
     // handle interaction expired / session not found error
     //}

@@ -23,7 +23,6 @@ class Account {
   async claims(use, scope) { // eslint-disable-line no-unused-vars
 
     if (this.profile) {
-      console.log(":::Results has profile")
       return {
         sub: this.accountId, // it is essential to always return a sub claim
       };

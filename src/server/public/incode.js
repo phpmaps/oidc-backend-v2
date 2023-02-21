@@ -1,5 +1,6 @@
 let flow;
 let interval;
+interval = setInterval(heartbeat, 2000, flow);
 
 // const updateQr = (text) => {
 //     var qrcode = new QRCode({ content: text, join: true });
@@ -141,29 +142,23 @@ function postwith(to, p) {
 }
 
 
-//flow = JSON.parse(document.getElementById('gov_selfie').value);
-//updateQr(flow.url)
+flow = JSON.parse(document.getElementById('gov_id_selfie').value);
+console.log(flow.url);
 
-async function myCallback(f) {
-    const statusUrl = `https://demo-api.incodesmile.com/0/omni/get/onboarding/status?id=${flow.interviewId}`;
+
+async function heartbeat(f) {
+    const statusUrl = `${flow.apiUrl}/omni/get/onboarding/status?id=${flow.interviewId}`;
     const results = await doGet(statusUrl);
     console.log(results.onboardingStatus);
     if(results.onboardingStatus === 'ONBOARDING_FINISHED') {
+        setTimeout(()=>{
+            console.log("Finished")
+        }, 4000)
         const uuid = document.getElementById('uuid').value;
         postwith(`/interaction/${uuid}/login`, {
             id: flow.token,
             interview: flow.interviewId
         });
-
-        // fetch(`https://ping.incodedemo.com/interaction/${uuid}/login`, {
-        //     method: 'POST',
-        //     credentials: "same-origin",
-        //     body: {
-        //         id: flow.token,
-        //         interview: flow.interviewId
-        //     }
-        //     //other options
-        // }).then(response => console.log("Response status: ", response.status));
     }
 }
 
